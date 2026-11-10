@@ -1,0 +1,16 @@
+id: "eval-default-greetings"
+name: "Default Parameter Fallback Eval"
+description: "Verifies fallback to 'World' when name parameter is omitted"
+endpoint: "/api/v1/greetings"
+method: "GET"
+rules:
+  - type: "status_code"
+    expected: 200
+  - type: "json_path"
+    field: "$.recipient"
+    operator: "equals"
+    expected: "World"
+  - type: "json_path"
+    field: "$.message"
+    operator: "equals"
+    expected: "Hello, World!"

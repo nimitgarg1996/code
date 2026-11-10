@@ -1,0 +1,22 @@
+id: "eval-actuator-health"
+name: "System Actuator Health & Probes Eval"
+description: "Evaluates production health endpoint readiness, diskSpace, and ping status"
+endpoint: "/actuator/health"
+method: "GET"
+rules:
+  - type: "status_code"
+    expected: 200
+  - type: "latency"
+    maxMs: 250
+  - type: "json_path"
+    field: "$.status"
+    operator: "equals"
+    expected: "UP"
+  - type: "json_path"
+    field: "$.components.diskSpace.status"
+    operator: "equals"
+    expected: "UP"
+  - type: "json_path"
+    field: "$.groups"
+    operator: "contains"
+    expected: "liveness"

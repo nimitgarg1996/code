@@ -1,0 +1,18 @@
+# Gradle
+.gradle/
+build/
+
+# IDE & Editors
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+
+# Environment & Logs
+*.log
+*.h2.db
+.DS_Store

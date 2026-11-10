@@ -1,0 +1,31 @@
+id: "eval-greetings-contract"
+name: "Greeting Endpoint Contract & SLA Eval"
+description: "Evaluates /api/v1/greetings response schema, message formatting, and SLA latency"
+endpoint: "/api/v1/greetings"
+method: "GET"
+queryParams:
+  name: "Developer"
+rules:
+  - type: "status_code"
+    expected: 200
+  - type: "latency"
+    maxMs: 300
+  - type: "header"
+    field: "content-type"
+    expected: "application/json.*"
+  - type: "required_fields"
+    expected:
+      - "recipient"
+      - "message"
+      - "timestamp"
+  - type: "json_path"
+    field: "$.recipient"
+    operator: "equals"
+    expected: "Developer"
+  - type: "json_path"
+    field: "$.message"
+    operator: "matches"
+    expected: "^Hello, Developer!$"
+  - type: "json_path"
+    field: "$.timestamp"
+    operator: "is_not_null"
