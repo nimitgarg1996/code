@@ -1,0 +1,8 @@
+id: "eval-unknown-route"
+name: "Unknown Route Returns 404"
+description: "Negative case: unmapped path must return 404"
+endpoint: "/api/v1/does-not-exist"
+method: "GET"
+rules:
+  - type: "status_code"
+    expected: 404

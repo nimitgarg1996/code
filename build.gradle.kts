@@ -158,7 +158,12 @@ jib {
         image = "spring-boot-harness:latest"
     }
     container {
-        jvmFlags = listOf("-XX:+UseZGC", "-XX:+ZGenerational")
+        jvmFlags = listOf("-XX:+UseZGC")
         ports = listOf("8080")
     }
+}
+
+// Enforce coverage threshold as part of the master verification gate
+tasks.check {
+    dependsOn(tasks.jacocoTestCoverageVerification)
 }
